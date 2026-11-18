@@ -16,6 +16,7 @@ RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
 </IfModule>
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"

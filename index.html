@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AcquaHT Labs · Water from the heat AI throws away</title>
-<meta name="description" content="AcquaHT Labs turns data-centre waste heat into drinking water with a salt-loaded gel that catches water from the air. Hyderabad, India.">
+<meta name="description" content="AcquaHT Labs is building a module that uses data-centre waste heat to pull drinking water out of the air with a salt-loaded gel. Hyderabad, India.">
 <link rel="canonical" href="https://acquahtlabs.in/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://acquahtlabs.in/">
@@ -18,7 +18,8 @@
 <meta name="theme-color" content="#f7f4ee">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=mwm114hc">
+<link rel="stylesheet" href="assets/site.css?v=mwma2yup">
+<script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"AcquaHT Labs","url":"https://acquahtlabs.in","email":"swamynathan.jerra@outlook.com","telephone":"+91 93907 56095","address":{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},"description":"Turning data-centre waste heat into drinking water."}</script>
 </head>
 <body>
@@ -28,9 +29,10 @@
   <nav class="links" aria-label="Main">
     <a href="#how">How it works</a>
     <a href="#problem">Problem</a>
-    <a href="#pilot">Pilot</a>
+    <a href="#economics">Economics</a>
     <a href="#proof">Proof</a>
     <a href="#roadmap">Roadmap</a>
+    <a href="#supporters">Supporters</a>
     <a href="#team">Team</a>
     <a href="simulator/">Simulator</a>
   </nav>
@@ -107,116 +109,161 @@
   </ol>
 </section>
 
-<!-- 2 · problem -->
+<!-- II · problem -->
 <section class="sec" id="problem">
   <div class="wrap">
-    <p class="eyebrow">The problem</p>
-    <h2 class="title">AI is running into a water wall.</h2>
-    <div class="grid3">
-      <article class="stat"><p class="num">45,600 L</p><p>of water a day used by one 1 MW data hall</p><p class="src"><span class="tag pub">Published</span>EESI, June 2025 · average 1.9 L per kWh</p></article>
+    <header class="sec-head rv"><p class="eyebrow"><span class="nr">II</span>The problem</p><h2 class="title">AI is running into a water wall.</h2></header>
+    <div class="grid3 rv">
+      <article class="stat"><p class="num">45,600 L</p><p>of water a day used by one 1 MW data hall that cools with towers</p><p class="src"><span class="tag pub">Published</span>EESI, June 2025 · average 1.9 L per kWh</p></article>
       <article class="stat"><p class="num">7+ GW</p><p>India's data-centre load by 2030, up from 1.8 GW today</p><p class="src"><span class="tag pub">Published</span>Savills India via Indian Infrastructure, July 2026</p></article>
       <article class="stat"><p class="num">3.3×</p><p>more water tankers booked in Hyderabad, Oct 2026 vs Oct 2025</p><p class="src"><span class="tag pub">Published</span>Telangana Today, 15 Oct 2026</p></article>
     </div>
-    <p class="big-line">India's fastest-growing buildings are going up in cities that already buy water by the tanker.</p>
+    <p class="big-line rv">India's fastest-growing buildings are going up in cities that already buy water by the tanker.</p>
   </div>
 </section>
 
-<!-- 3 · insight -->
+<!-- III · the heat -->
 <section class="sec sec-alt" id="insight">
   <div class="wrap split">
-    <div>
-      <p class="eyebrow">The insight</p>
-      <h2 class="title">AI chips now run hot enough to make water.</h2>
-      <p>Almost every watt a chip uses becomes heat. Most data centres throw it away, often by evaporating water in cooling towers.</p>
-      <p>AI halls now cool with liquid, and that liquid comes back at 45–55 °C. Our gel lets go of its water at about 40 °C. The heat they pay to dump is the heat we need.</p>
-      <p class="note">We target liquid-cooled AI halls. Air-cooled halls run too cold. Sources: Alfa Laval heat-reuse guide; Guan et al., PNAS 2023.</p>
+    <div class="rv">
+      <p class="eyebrow"><span class="nr">III</span>The heat</p>
+      <h2 class="title">The heat is there. It has to be hot enough.</h2>
+      <p>Almost every watt a chip uses ends up as heat. Most data centres throw it away, often by evaporating water in cooling towers.</p>
+      <p>In the lab, the gel gives up its water at 40 °C, but that test used a 25 °C condenser. A condenser in a Hyderabad summer runs at 35 to 45 °C. So we design for heat at 55 to 75 °C.</p>
+      <p>Warm-water liquid cooling gets close to that on its own. Cooler loops need a small heat pump to lift them, and that costs electricity. Our first targets are hybrid halls: liquid-cooled GPUs plus cooling towers.</p>
+      <p class="note">Sources: Guan et al., PNAS 2023; ASHRAE liquid-cooling classes. The 55–75 °C band is our steam-table estimate, not yet measured.</p>
     </div>
-    <figure class="scale" aria-label="Cooling temperatures compared with the gel's release temperature">
-      <div class="scale-row"><span class="scale-name">Air cooling</span><span class="scale-bar"><b style="width:25%" class="cold"></b></span><span class="scale-val">up to 30 °C · too cold</span></div>
-      <div class="scale-row"><span class="scale-name">Direct-to-chip</span><span class="scale-bar"><b style="width:62.5%" class="warm"></b></span><span class="scale-val">up to 45 °C · usable</span></div>
-      <div class="scale-row"><span class="scale-name">Immersion</span><span class="scale-bar"><b style="width:87.5%" class="hot"></b></span><span class="scale-val">up to 55 °C · best</span></div>
-      <div class="scale-axis"><span>20 °C</span><span>30</span><span>40</span><span>50</span><span>60 °C</span></div>
-      <div class="scale-gel" style="left:calc(156px + (100% - 182px) * 0.5)"><span>Gel releases water · ~40 °C</span></div>
+    <figure class="scale rv" aria-label="Data-centre cooling temperatures compared with the heat our module needs in Hyderabad">
+      <div class="scale-plot">
+        <div class="scale-band" style="left:58.33%;width:33.33%"><span>Needed in Hyderabad · 55–75 °C</span></div>
+        <div class="scale-row"><span class="scale-name">Air cooling</span><span class="scale-bar"><b class="cold" style="left:0;width:16.67%"></b></span><span class="scale-val">up to 30 °C · too cold</span></div>
+        <div class="scale-row"><span class="scale-name">Tower water</span><span class="scale-bar"><b class="cold" style="left:16.67%;width:8.33%"></b></span><span class="scale-val">30–35 °C · too cold</span></div>
+        <div class="scale-row"><span class="scale-name">Liquid cooling</span><span class="scale-bar"><b class="hot" style="left:41.67%;width:33.33%"></b></span><span class="scale-val">45–65 °C · top end works, lower end needs a booster</span></div>
+      </div>
+      <div class="scale-axis"><span>20 °C</span><span>35</span><span>50</span><span>65</span><span>80 °C</span></div>
     </figure>
   </div>
 </section>
 
-<!-- 4 · pilot module -->
+<!-- IV · the module -->
 <section class="sec" id="pilot">
   <div class="wrap">
-    <p class="eyebrow">Pilot module AQ-M1</p>
-    <h2 class="title">One module. One shipping container.</h2>
-    <p class="sub">6.1 × 2.4 × 2.6 m. It plugs into the cooling loop, not the servers. A fail-safe bypass opens on any fault, so site cooling carries on.</p>
-    <dl class="specs">
-      <div><dt>Output</dt><dd>1,000 L of water a day</dd><span class="tag tgt">Target</span></div>
-      <div><dt>Heat in</dt><dd>~36 kW at 45–55 °C</dd><span class="tag est">Estimate</span></div>
-      <div><dt>Gel</dt><dd>~200 kg (at 5 kg of water per kg a day)</dd><span class="tag est">Estimate</span></div>
-      <div><dt>Airflow</dt><dd>~1.7 m³ per second</dd><span class="tag est">Estimate</span></div>
-      <div><dt>Electricity</dt><dd>≤30 kWh per 1,000 L</dd><span class="tag tgt">Target</span></div>
-      <div><dt>Footprint</dt><dd>One 20-ft container</dd><span class="tag tgt">Target</span></div>
-      <div><dt>Water</dt><dd>Meets BIS IS 10500</dd><span class="tag tgt">Target</span></div>
-      <div><dt>Safety</dt><dd>Fail-safe bypass on any fault</dd><span class="tag tgt">Target</span></div>
+    <header class="sec-head rv"><p class="eyebrow"><span class="nr">IV</span>The module · AW-1000 concept</p><h2 class="title">Six gel chambers on one skid.</h2>
+    <p class="sub">It connects to the site's facility-water loop through a plate heat exchanger, never to the servers' own loop. A bypass keeps site cooling running if anything fails.</p></header>
+    <dl class="specs rv">
+      <div><dt>Gel</dt><dd>300 kg in six chambers</dd><span class="tag dsn">Design</span></div>
+      <div><dt>Cycle</dt><dd>100 min catch, 20 min release</dd><span class="tag pub">Published</span></div>
+      <div><dt>Water, year average</dt><dd>About 800 L a day</dd><span class="tag est">Model</span></div>
+      <div><dt>May vs August</dt><dd>256 vs 993 L a day</dd><span class="tag est">Model</span></div>
+      <div><dt>With a heat-pump condenser</dt><dd>About 1,720 L a day, year average</dd><span class="tag est">Model</span></div>
+      <div><dt>Electricity</dt><dd>Under 50 Wh per litre, measured</dd><span class="tag tgt">Target</span></div>
+      <div><dt>Water quality</dt><dd>IS 10500, plus a lithium limit</dd><span class="tag tgt">Target</span></div>
+      <div><dt>Footprint</dt><dd>One skid in the service yard</dd><span class="tag dsn">Design</span></div>
     </dl>
-    <p class="note">100 modules make one 100,000 L a day utility block.</p>
-  </div>
-</section>
-
-<!-- 5 · physics -->
-<section class="sec sec-alt" id="physics">
-  <div class="wrap">
-    <p class="eyebrow">The physics</p>
-    <h2 class="title">3.6 MW of waste heat in. 100,000 L of water out.</h2>
-    <div class="grid3">
-      <article class="stat"><p class="num">3.1 MJ</p><p>of heat per kg of water</p><p class="src"><span class="tag est">Estimate</span></p></article>
-      <article class="stat"><p class="num">29 kWh</p><p>of electricity per 1,000 L (17 at target). Refrigeration machines use 280–400.</p><p class="src"><span class="tag est">Estimate</span></p></article>
-      <article class="stat"><p class="num">~160 m³</p><p>of cooling-tower water a day the site no longer evaporates</p><p class="src"><span class="tag est">Estimate</span></p></article>
-    </div>
-    <div class="callout">
-      <p><b>Two models, one open question.</b> These figures come from our engineering model v0.1. Our newer simulator also counts fan power at full airflow and the vapour a warm condenser misses, and for a Hyderabad May it gives a much less rosy answer. The bench-rig tests decide which is closer.</p>
+    <div class="callout rv">
+      <p><b>Every model number here comes from our open simulator.</b> It runs the module through Hyderabad's weather month by month. Change the heat, the condenser or the amount of gel and every figure follows.</p>
       <a class="btn btn-line" href="simulator/">Open the simulator</a>
     </div>
   </div>
 </section>
 
-<!-- 6 · proof -->
-<section class="sec" id="proof">
+<!-- V · economics -->
+<section class="sec sec-alt" id="economics">
   <div class="wrap">
-    <p class="eyebrow">Proof so far</p>
-    <h2 class="title">We built a machine. It made water. A customer paid.</h2>
-    <div class="grid4">
-      <article class="stat"><p class="num">210 L</p><p>of water made in two tests</p><p class="src"><span class="tag mes">Measured</span></p></article>
-      <article class="stat"><p class="num">WHO + BIS</p><p>drinking-water limits met</p><p class="src"><span class="tag mes">Measured</span></p></article>
-      <article class="stat"><p class="num">₹75,000</p><p>first revenue, May 2026</p><p class="src"><span class="tag mes">Measured</span></p></article>
-      <article class="stat"><p class="num">₹26 lakh</p><p>in grants, zero equity raised</p><p class="src"><span class="tag mes">Measured</span></p></article>
+    <header class="sec-head rv"><p class="eyebrow"><span class="nr">V</span>The economics</p><h2 class="title">What a litre costs, and how we bring it down.</h2>
+    <p class="sub">Honest numbers first. Cost of made water per 1,000 litres in Hyderabad. These are model estimates, not measurements.</p></header>
+    <figure class="bars rv" aria-label="Cost per 1,000 litres: our best case, with a booster heat pump, and a private tanker">
+      <div class="bar-row"><span class="bar-name">Our best case<small>heat hot enough · 40–60 Wh per litre</small></span><span class="bar-track"><b class="b-blue" style="width:34.3%"></b><i style="left:28.6%;width:5.7%"></i></span><span class="bar-val">₹800–960</span></div>
+      <div class="bar-row"><span class="bar-name">With a booster heat pump<small>220–280 Wh per litre</small></span><span class="bar-track"><b class="b-amber" style="width:96.4%"></b><i style="left:78.6%;width:17.8%"></i></span><span class="bar-val">₹2,200–2,700</span></div>
+      <div class="bar-row"><span class="bar-name">Private water tanker<small>Hyderabad, 2024 price</small></span><span class="bar-track"><b class="b-grey" style="width:8.6%"></b><i style="left:7.1%;width:1.5%"></i></span><span class="bar-val">₹200–240</span></div>
+      <figcaption>Model: ₹8 per kWh, capex ₹6.5 crore per block, 14% cost of capital, 15 years, 90% uptime, gel ₹800 per kg replaced every 3 years. Tanker: ₹1,000–1,200 per 5,000 L.</figcaption>
+    </figure>
+    <p class="big-line rv">Plain made water cannot beat a tanker in Hyderabad today. So we sell first where water costs more than ₹1,000 per 1,000 litres, or cannot be bought legally at all.</p>
+    <h3 class="minor rv">Six ways we bring the cost down</h3>
+    <div class="levers rv">
+      <article><span class="lv">01</span><h4>Hotter heat</h4><p>Going from 50 °C to 65 °C heat gives about 67% more water from the same gel.</p><span class="tag est">Model</span></article>
+      <article><span class="lv">02</span><h4>Heat-pump condenser</h4><p>About 2.1 times more water a year, and it fixes the summer drop. It costs more electricity and capital.</p><span class="tag est">Model</span></article>
+      <article><span class="lv">03</span><h4>No cooling towers</h4><p>A tower on the condenser evaporates about as much water as the module makes. We use dry coolers or a heat pump.</p><span class="tag est">Model</span></article>
+      <article><span class="lv">04</span><h4>Fans measured first</h4><p>Fans are the biggest unknown on the electricity bill. Low-resistance gel beds and EC fans, metered on the bench rig.</p><span class="tag tgt">Target</span></article>
+      <article><span class="lv">05</span><h4>Cheap gel</h4><p>At ₹800 per kg, replaced every 3 years, the gel is a small part of the cost.</p><span class="tag est">Model</span></article>
+      <article><span class="lv">06</span><h4>The right buyers</h4><p>Sites with no legal water source, water-credit buyers, drinking water, and high-cost regions like the Gulf.</p><span class="tag tgt">Target</span></article>
     </div>
-    <p class="note">That first machine used refrigeration parts. It is not the gel module above. Backed by 15 groups since November 2023: 2 funders, 3 prize wins, 6 coaching programmes and 4 partners.</p>
+    <div class="callout rv">
+      <p><b>Two models, one open question.</b> Our engineering estimate puts electricity at 40–60 Wh per litre. Our simulator, which counts fan power at full airflow, gives 170–260. The bench rig measures it on every cycle. Our target is under 50, measured.</p>
+      <a class="btn btn-line" href="simulator/">Check it yourself</a>
+    </div>
   </div>
 </section>
 
-<!-- 7 · roadmap -->
+<!-- VI · proof -->
+<section class="sec" id="proof">
+  <div class="wrap">
+    <header class="sec-head rv"><p class="eyebrow"><span class="nr">VI</span>Proof so far</p><h2 class="title">We built a machine. It made water. A customer paid.</h2></header>
+    <div class="proof rv">
+      <figure class="photo">
+        <img src="media/first-machine.jpg" alt="AcquaHT's first water-from-air machine: a black steel frame with air filters on top, a coil and a compressor inside" width="1200" height="913" loading="lazy" decoding="async">
+        <figcaption>Our first machine, built from refrigeration parts. It is not the gel module.</figcaption>
+      </figure>
+      <div class="grid2">
+        <article class="stat"><p class="num">210 L</p><p>of water made in two field tests in Telangana</p><p class="src"><span class="tag mes">Measured</span></p></article>
+        <article class="stat"><p class="num num-sm">WHO + BIS</p><p>drinking-water limits met in lab tests</p><p class="src"><span class="tag mes">Measured</span></p></article>
+        <article class="stat"><p class="num">₹75,000</p><p>paid by our first customer, May 2026</p><p class="src"><span class="tag mes">Measured</span></p></article>
+        <article class="stat"><p class="num">₹26 lakh</p><p>in grants we never pay back. No equity raised.</p><p class="src"><span class="tag mes">Measured</span></p></article>
+      </div>
+    </div>
+    <p class="note rv">We started in Hyderabad in November 2023. Fifteen programmes, grants and prizes have helped us since.</p>
+  </div>
+</section>
+
+<!-- VII · roadmap -->
 <section class="sec sec-alt" id="roadmap">
   <div class="wrap">
-    <p class="eyebrow">Roadmap</p>
-    <h2 class="title">Prove one container. Then copy it 100 times per site.</h2>
-    <ol class="road">
-      <li class="now"><span class="when">Now</span><b>TRL 4</b><span>Lab machine made safe water. Gel bench rigs in build.</span></li>
-      <li><span class="when">G1 · month 6</span><b>Gel: 1,000 cycles, ≤10% loss</b><span class="tag tgt">Target</span></li>
-      <li><span class="when">G2 · month 12</span><b>≥1,000 L a day on real heat, ≤30 kWh per 1,000 L</b><span class="tag tgt">Target</span></li>
-      <li><span class="when">G3 · month 18</span><b>6 months at ≥90% uptime</b><span class="tag tgt">Target</span></li>
-      <li><span class="when">2028</span><b>First paying data centre · 10 modules · 10,000 L a day</b><span class="tag tgt">Target</span></li>
-      <li><span class="when">2029–30</span><b>100 modules per site · 100,000 L a day × 20 sites</b><span class="tag tgt">Target</span></li>
+    <header class="sec-head rv"><p class="eyebrow"><span class="nr">VII</span>Roadmap</p><h2 class="title">Prove the gel. Prove one module. Then copy it.</h2>
+    <p class="sub">Each step happens only if the one before it passes.</p></header>
+    <ol class="road rv">
+      <li class="now"><span class="when">Now</span><b>Lab machine made safe water. Gel bench rigs in build.</b><span class="tag mes">Done</span></li>
+      <li><span class="when">Gate 1 · month 6</span><b>1,000 gel cycles, under 10% loss, Wh per litre logged</b><span class="tag tgt">Target</span></li>
+      <li><span class="when">Gate 2 · month 12</span><b>Under 50 Wh per litre, measured, plus one signed site</b><span class="tag tgt">Target</span></li>
+      <li><span class="when">Gate 3 · month 18</span><b>1,000 L a day on real data-centre heat, checked by a third party</b><span class="tag tgt">Target</span></li>
+      <li><span class="when">2028</span><b>First paying data centre · 10,000 L a day</b><span class="tag tgt">Target</span></li>
+      <li><span class="when">2029–30</span><b>100,000 L a day per site</b><span class="tag tgt">Target</span></li>
     </ol>
   </div>
 </section>
 
-<!-- 8 · recognition -->
-<section class="sec" id="recognition">
+<!-- VIII · supporters -->
+<section class="sec" id="supporters">
   <div class="wrap">
-    <p class="eyebrow">Recognition</p>
-    <h2 class="title">Backed by people who checked our work.</h2>
-    <ul class="recog">
+    <header class="sec-head rv"><p class="eyebrow"><span class="nr">VIII</span>Supporters</p><h2 class="title">Programmes, grants and prizes that vetted us.</h2>
+    <p class="sub">These are grants, prizes and programmes, not investors. We have raised no equity.</p></header>
+    <div class="logo-groups rv">
+      <div class="lg"><h3>Grants and fellowships</h3><ul class="logo-wall">
+        <li><img src="media/logos/mercatus.png" alt="Mercatus Center, George Mason University (Emergent Ventures)" loading="lazy" width="195" height="35"></li>
+        <li><img src="media/logos/bevisioneers.png" alt="beVisioneers: The Mercedes-Benz Fellowship" loading="lazy" width="190" height="45"></li>
+        <li><img src="media/logos/iim-calcutta.png" alt="IIM Calcutta Innovation Park" loading="lazy" width="111" height="120"></li>
+        <li><img src="media/logos/meity.png" alt="MeitY Startup Hub" loading="lazy" width="144" height="120"></li>
+      </ul></div>
+      <div class="lg"><h3>Prizes</h3><ul class="logo-wall">
+        <li><img src="media/logos/iim-shillong.png" alt="IIM Shillong" loading="lazy" width="74" height="99"></li>
+        <li><img src="media/logos/boeing-thub.png" alt="Boeing and T-Hub" loading="lazy" width="198" height="40"></li>
+        <li><img src="media/logos/tsic.png" alt="Telangana State Innovation Cell" loading="lazy" width="344" height="120"></li>
+      </ul></div>
+      <div class="lg"><h3>Programmes</h3><ul class="logo-wall">
+        <li><img src="media/logos/isb-aic.png" alt="ISB AIC, Indian School of Business" loading="lazy" width="495" height="120"></li>
+        <li><img src="media/logos/aic-iiith.png" alt="AIC-IIITH" loading="lazy" width="196" height="64"></li>
+        <li><img src="media/logos/iim-jammu.png" alt="Indian Institute of Management Jammu" loading="lazy" width="572" height="120"></li>
+        <li><img src="media/logos/bits-pilani.png" alt="BITS Pilani" loading="lazy" width="98" height="99"></li>
+        <li><img src="media/logos/stpi.png" alt="Software Technology Parks of India" loading="lazy" width="182" height="100"></li>
+        <li><img src="media/logos/t-works.png" alt="T-Works" loading="lazy" width="120" height="120"></li>
+      </ul></div>
+      <div class="lg"><h3>Partners</h3><ul class="logo-wall">
+        <li><img src="media/logos/iwa.png" alt="International Water Association" loading="lazy" width="170" height="120"></li>
+        <li><img src="media/logos/bala-vikasa.png" alt="Bala Vikasa" loading="lazy" width="256" height="58"></li>
+      </ul></div>
+    </div>
+    <ul class="recog rv">
       <li><b>Emergent Ventures grant</b><span>Mercatus Center, George Mason University</span></li>
-      <li><b>Mercedes-Benz beVisioneers Fellow</b><span>2025 · 1 of 1,000 innovators worldwide</span></li>
+      <li><b>Mercedes-Benz beVisioneers Fellow</b><span>2025 · one of 1,000 innovators worldwide</span></li>
       <li><b>1st Prize, IIM Shillong International Water Conference</b><span>Cash prize and 3-year incubation</span></li>
       <li><b>UN-Habitat Youth Assembly 2025</b><span>Asia-Pacific Top 40 youth solutions · Cebu, Philippines</span></li>
       <li><b>MeitY TIDE 2.0 Entrepreneur-in-Residence</b><span>IIM Calcutta Innovation Park</span></li>
@@ -224,28 +271,28 @@
       <li><b>Variance Startup Accelerator</b><span>Residency, Bengaluru</span></li>
       <li><b>UN Global Compact</b><span>Participant since August 2025</span></li>
     </ul>
-    <p class="logos">Emergent Ventures · Mercedes-Benz beVisioneers · ISB AIC · IIM Calcutta Innovation Park · MeitY · IIM Shillong · UN-Habitat · UN Global Compact · Variance · Telangana State Innovation Cell · T-Works · Bala Vikasa · IISER Kolkata</p>
+    <p class="fine-note">Logos belong to their owners. They show programmes we took part in and do not mean endorsement.</p>
   </div>
 </section>
 
-<!-- 9 · team -->
+<!-- IX · team -->
 <section class="sec sec-alt" id="team">
   <div class="wrap">
-    <p class="eyebrow">Team</p>
-    <h2 class="title">Four founders. Engineering, water safety and business.</h2>
-    <div class="grid4 team">
-      <article><span class="av">JS</span><h3>Jerra Swamynathan</h3><p class="role">Founder &amp; CEO</p><p>Built a company before (BiGeo). Won ₹26 lakh in grants for AcquaHT.</p></article>
-      <article><span class="av">VS</span><h3>Vaidhatri Sanugula</h3><p class="role">Biotech &amp; research</p><p>Microbiology and DNA testing. Owns water safety.</p></article>
-      <article><span class="av">SM</span><h3>Sumanth Malyala</h3><p class="role">R&amp;D engineer</p><p>Builds our machines and tests them until they work.</p></article>
-      <article><span class="av">NS</span><h3>Nalla Sai Smaran</h3><p class="role">Co-founder, business development</p><p>Computer engineer. Finds customers and signs them up.</p></article>
+    <header class="sec-head rv"><p class="eyebrow"><span class="nr">IX</span>Team</p><h2 class="title">Four people. Engineering, water safety and business.</h2></header>
+    <div class="grid4 team rv">
+      <article><img class="av" src="media/team/jerra-swamynathan.jpg" alt="Jerra Swamynathan" width="96" height="96" loading="lazy"><h3>Jerra Swamynathan</h3><p class="role">Founder &amp; CEO</p><p>Founded BiGeo (rural routing, 2023–25). Telangana State Innovation Cell coordinator, 2024. beVisioneers Fellow 2025.</p></article>
+      <article><img class="av" src="media/team/vaidhatri-sanugula.jpg" alt="Vaidhatri Sanugula" width="96" height="96" loading="lazy"><h3>Vaidhatri Sanugula</h3><p class="role">Biotech &amp; research</p><p>Microbiology and DNA testing. Checks that the water is safe to drink.</p></article>
+      <article><img class="av" src="media/team/sumanth-malyala.jpg" alt="Sumanth Malyala" width="96" height="96" loading="lazy"><h3>Sumanth Malyala</h3><p class="role">R&amp;D engineer</p><p>Builds our machines and tests them until they work.</p></article>
+      <article><img class="av" src="media/team/nalla-sai-smaran.jpg" alt="Nalla Sai Smaran" width="96" height="96" loading="lazy"><h3>Nalla Sai Smaran</h3><p class="role">Co-founder, business development</p><p>Computer engineer. Finds customers and signs them up.</p></article>
     </div>
-    <p class="note">Advisors: Prof. Soumyajit Roy (IISER Kolkata) · Vijender Mogli (Bala Vikasa) · RYLT (manufacturing partner).<br>Hiring next: thermal engineer, controls engineer, field-operations lead, water-quality technician.</p>
+    <p class="note rv">Advisors: Prof. Soumyajit Roy (IISER Kolkata) · Vijender Mogili (Bala Vikasa) · RYLT (manufacturing partner).<br>Hiring with this round: a sorbent chemist and a data-centre cooling advisor.</p>
   </div>
 </section>
 
-<!-- 10 · contact -->
+<!-- X · contact -->
 <section class="sec cta" id="contact">
   <div class="wrap">
+    <p class="eyebrow eyebrow-light"><span class="nr">X</span>Work with us</p>
     <h2 class="title">Every AI data centre can be a water source.</h2>
     <p class="sub">We are raising a $750K pre-seed round and looking for our first data-centre pilot partner: a paid 6-month pilot with pass/fail terms agreed up front.</p>
     <div class="who">
@@ -262,12 +309,25 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-row">
-    <a class="brand" href="./"><span class="drop" aria-hidden="true"></span>AcquaHT <small>LABS</small></a>
-    <p>Hyderabad, India · <a href="mailto:swamynathan.jerra@outlook.com">swamynathan.jerra@outlook.com</a> · <a href="tel:+919390756095">+91 93907 56095</a></p>
-    <p class="fine">© 2026 AcquaHT Labs. Numbers marked Target or Estimate are engineering-model values, not measurements. The module shown in 3D is a concept and has not been built.</p>
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="./"><span class="drop" aria-hidden="true"></span>AcquaHT <small>LABS</small></a>
+      <p class="foot-tag">Water from the heat AI throws away.<br>Hyderabad, India · since November 2023</p>
+    </div>
+    <nav aria-label="Footer">
+      <p class="foot-h">Explore</p>
+      <a href="#how">How it works</a><a href="#economics">Economics</a><a href="#proof">Proof</a><a href="#roadmap">Roadmap</a><a href="simulator/">Simulator</a>
+    </nav>
+    <div>
+      <p class="foot-h">Contact</p>
+      <a href="mailto:swamynathan.jerra@outlook.com">swamynathan.jerra@outlook.com</a><a href="tel:+919390756095">+91 93907 56095</a>
+    </div>
   </div>
+  <div class="wrap"><p class="fine">© 2026 AcquaHT Labs. Numbers marked Model, Design or Target are engineering estimates, not measurements. The module shown in 3D is a concept and has not been built.</p></div>
 </footer>
-<script type="module" src="assets/site.js?v=mwm114hc"></script>
+<script>
+(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('rv-off');return}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.08});document.querySelectorAll('.rv').forEach(function(el){io.observe(el)})})();
+</script>
+<script type="module" src="assets/site.js?v=mwma2yup"></script>
 </body>
 </html>
