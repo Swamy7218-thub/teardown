@@ -19,6 +19,12 @@ if ($event === 'skip' || $event === 'open') {
 }
 if ($event !== 'card') { http_response_code(400); echo '{"ok":false}'; exit; }
 
+// card made without "save me": nothing personal is sent, just count it
+if (empty($in['save'])) {
+    $counts = acq_bump('card');
+    echo json_encode(['ok' => true, 'cards' => (int)$counts['card']]); exit;
+}
+
 // a hidden field people never see; bots fill it
 if (!empty($in['website'])) { echo '{"ok":true,"n":0}'; exit; }
 

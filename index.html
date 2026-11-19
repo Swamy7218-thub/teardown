@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#0b0d10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=mwmwz4q9">
+<link rel="stylesheet" href="assets/site.css?v=mwmx4wvq">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"AcquaHT Labs","url":"https://acquahtlabs.in","email":"swamynathan.jerra@acquahtlabs.in","telephone":"+91 93907 56095","address":{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},"description":"Turning data-centre waste heat into drinking water."}</script>
 </head>
 <body>
@@ -388,11 +388,11 @@
 <!-- first website launch: welcome card, skippable, opens first -->
 <div class="lc" id="lc" role="dialog" aria-modal="true" aria-labelledby="lc-h" hidden>
   <div class="lc-box">
-    <button class="lc-x" type="button" data-skip aria-label="Skip">Skip</button>
     <form class="lc-step" id="lc-form" novalidate>
       <p class="lc-kick">[ Our first website launch ]</p>
       <h2 id="lc-h">Welcome to our first launch. We made you something.</h2>
-      <p class="lc-sub">Tell us your name and birthday. You get a note written just for you, and a card to keep.</p>
+      <p class="lc-sub">Tell us your name and birthday. You get a note written just for you, and a card to keep. It takes about 20 seconds, then the site opens.</p>
+      <p class="lc-day">Launch day only. This card disappears on 20 November at 8:00 AM IST, and after that the site opens straight away.</p>
       <label class="lc-f"><span>Your name</span><input id="lc-name" name="name" autocomplete="given-name" maxlength="60" required placeholder="First name is fine"></label>
       <div class="lc-f"><span>Your birthday</span>
         <div class="lc-dob"><select id="lc-day" aria-label="Day" required><option value="">Day</option></select><select id="lc-month" aria-label="Month" required><option value="">Month</option></select></div>
@@ -400,7 +400,7 @@
       <input class="lc-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="lc-ok"><input type="checkbox" id="lc-save"> <span>Add me to our launch-day guest list. AcquaHT saves my name and birthday (day and month) with the time. Not sold or shared. Email swamynathan.jerra@acquahtlabs.in to delete it.</span></label>
       <p class="lc-err" id="lc-err" role="alert"></p>
-      <div class="lc-row"><button class="btn lc-go" type="submit">Get my card</button><button class="btn lc-skip" type="button" data-skip>Skip to the site</button></div>
+      <div class="lc-row"><button class="btn lc-go" type="submit">Get my card and open the site</button></div>
     </form>
     <div class="lc-step lc-out" id="lc-out" hidden>
       <p class="lc-kick" id="lc-guest">[ Our first website launch ]</p>
@@ -464,9 +464,11 @@
   function open(){lastFocus=document.activeElement;lc.hidden=false;document.documentElement.classList.add('lc-on');setTimeout(function(){document.getElementById('lc-name').focus({preventScroll:true})},60);post({event:'open'})}
   function close(skip){lc.hidden=true;document.documentElement.classList.remove('lc-on');if(skip&&store()!=='card'){store('skip');post({event:'skip'})}if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true})}
   lc.querySelectorAll('[data-skip]').forEach(function(b){b.addEventListener('click',function(){close(true)})});
-  lc.addEventListener('keydown',function(e){if(e.key==='Escape')close(true)});
+  lc.addEventListener('keydown',function(e){if(e.key==='Escape'&&!el('lc-out').hidden)close(false)});
   document.querySelectorAll('[data-launch-card]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open()})});
-  if(!store()&&!/[?&]nocard/.test(location.search))open();
+  var LIVE=Date.now()<Date.UTC(2026,10,20,2,30);
+  if(!LIVE)document.querySelectorAll('[data-launch-card]').forEach(function(a){a.remove()});
+  if(LIVE&&store()!=='card'&&!/[?&]nocard/.test(location.search))open();
 
   function untilBday(day,mon){var n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate()),b=new Date(n.getFullYear(),mon-1,day);if(b<t)b=new Date(n.getFullYear()+1,mon-1,day);return Math.round((b-t)/864e5)}
   function first(s){var f=s.trim().split(/\s+/)[0];return f.charAt(0).toUpperCase()+f.slice(1)}
@@ -492,7 +494,7 @@
     made={fn:fn,day:day,mon:mon,q:q,bn:bn,ac:ac,n:0};
     el('lc-form').hidden=true;el('lc-out').hidden=false;el('lc-out').scrollTop=0;lc.querySelector('.lc-box').scrollTop=0;
     draw();
-    post({event:'card',name:name,day:day,month:mon,save:el('lc-save').checked,website:lc.querySelector('.lc-hp').value,ref:document.referrer}).then(function(r){if(r&&r.cards){made.n=r.cards;el('lc-guest').textContent='[ Our first launch · guest #'+r.cards+' ]';draw()}});
+    var sv=el('lc-save').checked;post(sv?{event:'card',save:true,name:name,day:day,month:mon,website:lc.querySelector('.lc-hp').value,ref:document.referrer}:{event:'card',save:false}).then(function(r){if(r&&r.cards){made.n=r.cards;el('lc-guest').textContent='[ Our first launch · guest #'+r.cards+' ]';draw()}});
   });
 
   function wrap(c,t,x,y,w,lh){var ws=t.split(' '),l='',n=0;for(var k=0;k<ws.length;k++){var tt=l?l+' '+ws[k]:ws[k];if(c.measureText(tt).width>w&&l){c.fillText(l,x,y+n*lh);n++;l=ws[k]}else l=tt}c.fillText(l,x,y+n*lh);return y+(n+1)*lh}
@@ -532,6 +534,6 @@
   document.querySelectorAll('.sec .stat .num:not(.num-sm)').forEach(function(el){io.observe(el)});
 })();
 </script>
-<script type="module" src="assets/site.js?v=mwmwz4q9"></script>
+<script type="module" src="assets/site.js?v=mwmx4wvq"></script>
 </body>
 </html>
