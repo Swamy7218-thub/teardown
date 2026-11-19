@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#0b0d10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=mwmwl77x">
+<link rel="stylesheet" href="assets/site.css?v=mwmwv5pt">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"AcquaHT Labs","url":"https://acquahtlabs.in","email":"swamynathan.jerra@acquahtlabs.in","telephone":"+91 93907 56095","address":{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},"description":"Turning data-centre waste heat into drinking water."}</script>
 </head>
 <body>
@@ -392,7 +392,7 @@
     <form class="lc-step" id="lc-form" novalidate>
       <p class="lc-kick">[ Launch no. 17 ]</p>
       <h2 id="lc-h">You came to our launch. We made you something.</h2>
-      <p class="lc-sub">Tell us your name and birthday. You get a short note written for you and a card to keep.</p>
+      <p class="lc-sub">Tell us your name and birthday. You get a note written just for you, and a card to keep.</p>
       <label class="lc-f"><span>Your name</span><input id="lc-name" name="name" autocomplete="given-name" maxlength="60" required placeholder="First name is fine"></label>
       <div class="lc-f"><span>Your birthday</span>
         <div class="lc-dob"><select id="lc-day" aria-label="Day" required><option value="">Day</option></select><select id="lc-month" aria-label="Month" required><option value="">Month</option></select></div>
@@ -405,7 +405,7 @@
     <div class="lc-step lc-out" id="lc-out" hidden>
       <p class="lc-kick" id="lc-guest">[ Launch no. 17 ]</p>
       <h2 id="lc-hi"></h2>
-      <p class="lc-msg" id="lc-msg"></p>
+      <div class="lc-msg" id="lc-msg"></div>
       <p class="lc-num" id="lc-num"></p>
       <canvas id="lc-card" width="1080" height="1350" aria-label="Your launch card"></canvas>
       <div class="lc-row"><button class="btn lc-go" type="button" id="lc-dl">Download my card</button><button class="btn lc-skip" type="button" id="lc-share" hidden>Share</button><button class="btn lc-skip" type="button" data-skip>See the machine</button></div>
@@ -416,20 +416,46 @@
 (function(){
   var lc=document.getElementById('lc'); if(!lc) return;
   var KEY='aq-launch17', M=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var LINES=[
-    'Born at the start of the year, like every good plan. Ours is to make water from heat nobody wants.',
-    'February is the shortest month and still gets everything done. We respect that kind of efficiency.',
-    'March holds World Water Day on the 22nd. You were born in water’s own month.',
-    'April is when Hyderabad starts to bake. You bring the cool. We will bring the water.',
-    'May is the hottest month here and the hardest month for our machine. May people handle pressure.',
-    'June brings World Environment Day on the 5th and the first rain. Good timing on your part.',
-    'July air is full of monsoon. Our gel would call that a very good day at work.',
-    'August is our machine’s best month: about 993 litres a day in our model. Clearly a lucky month.',
-    'September air is still heavy with rain. A good month to be born, and a good month to catch water.',
-    'October is when Hyderabad’s tanker calls start climbing again. We would like to end that story.',
-    'November is when AcquaHT started, in 2023. You share a birthday month with a water startup.',
-    'December closes the year. We want to close the gap between wasted heat and clean water.'
+  // traditional birth flower and stone for each month, with one line of our own
+  var BORN=[
+    ['carnation','garnet','Garnet is deep red, like a fire on a cold night. You are the warm one in the room.'],
+    ['violet','amethyst','Small, purple and impossible to miss once you notice them. Sounds like you.'],
+    ['daffodil','aquamarine','The first bright flower after winter, and a stone the colour of the sea. You are the start of good things.'],
+    ['daisy','diamond','One is simple, one is unbreakable. You get to be both.'],
+    ['lily of the valley','emerald','Gentle on the outside, green and alive all the way through.'],
+    ['rose','pearl','A pearl starts as a small hurt and turns into something beautiful. That is a rare skill.'],
+    ['larkspur','ruby','Tall, bright and all heart.'],
+    ['gladiolus','peridot','Peridot is one of the few gems ever found inside meteorites. A little of you came from the stars.'],
+    ['aster','sapphire','Aster means star in Greek. Your own flower is named after the sky at night.'],
+    ['marigold','opal','Marigolds light up every celebration, and an opal shows a new colour each time it moves. Never boring, always welcome.'],
+    ['chrysanthemum','topaz','The chrysanthemum blooms when most flowers have given up for the year. Proof that good things come in their own time.'],
+    ['narcissus','turquoise','People have worn turquoise for protection for thousands of years. Someone out there feels safer because of you.']
   ];
+  // only lines we can trace to their original public-domain source
+  var Q=[
+    ['If you shed tears when you miss the sun, you also miss the stars.','Rabindranath Tagore, Stray Birds (1916)'],
+    ['The butterfly counts not months but moments, and has time enough.','Rabindranath Tagore, Fireflies (1928)'],
+    ['Faith is the bird that feels the light and sings when the dawn is still dark.','Rabindranath Tagore, Fireflies (1928)'],
+    ['Clouds come floating into my life, no longer to carry rain or usher storm, but to add color to my sunset sky.','Rabindranath Tagore, Stray Birds (1916)'],
+    ['Let life be beautiful like summer flowers and death like autumn leaves.','Rabindranath Tagore, Stray Birds (1916)'],
+    ['“Hope” is the thing with feathers that perches in the soul.','Emily Dickinson, c. 1861'],
+    ['Forever is composed of Nows.','Emily Dickinson, c. 1863'],
+    ['I dwell in Possibility.','Emily Dickinson, c. 1862'],
+    ['That it will never come again is what makes life so sweet.','Emily Dickinson, c. 1871'],
+    ['I am large, I contain multitudes.','Walt Whitman, Song of Myself (1855)'],
+    ['To me every hour of the light and dark is a miracle.','Walt Whitman, Miracles (1856)'],
+    ['Heaven is under our feet as well as over our heads.','Henry David Thoreau, Walden (1854)'],
+    ['Write it on your heart that every day is the best day in the year.','Ralph Waldo Emerson, Society and Solitude (1870)'],
+    ['We know what we are, but know not what we may be.','William Shakespeare, Hamlet'],
+    ['Love all, trust a few, do wrong to none.','William Shakespeare, All’s Well That Ends Well'],
+    ['A thing of beauty is a joy for ever.','John Keats, Endymion (1818)'],
+    ['Optimism is the faith that leads to achievement.','Helen Keller, Optimism (1903)'],
+    ['Arise, awake, and stop not till the goal is reached.','Swami Vivekananda, after the Katha Upanishad'],
+    ['You cannot step twice into the same river.','Heraclitus, as told by Plato in Cratylus']
+  ];
+  var W={a:['Amazing','Adventurous','Admirable'],b:['Brave','Bright'],c:['Caring','Creative'],d:['Daring','Delightful'],e:['Energetic','Easygoing','Elegant'],f:['Fearless','Funny'],g:['Generous','Gentle'],h:['Honest','Hopeful','Heartfelt'],i:['Inspiring','Imaginative','Incredible'],j:['Joyful','Just'],k:['Kind','Kind-hearted'],l:['Loyal','Lovely','Luminous'],m:['Marvellous','Magnetic'],n:['Noble','Natural','Nurturing'],o:['Optimistic','Original','Open-hearted'],p:['Patient','Positive'],q:['Quick-witted','Quirky'],r:['Radiant','Resilient','Remarkable'],s:['Strong','Sincere','Spirited'],t:['Thoughtful','Trusted','Tender'],u:['Unstoppable','Unique'],v:['Valiant','Visionary'],w:['Warm','Wise'],x:['eXtraordinary','eXceptional'],y:['Young at heart','Yours truly'],z:['Zestful','Zany']};
+  function acro(fn){var s=fn.toLowerCase();if(!/^[a-z]{2,12}$/.test(s))return null;var seen={};return s.split('').map(function(ch){var k=seen[ch]=(seen[ch]||0)+1;var w=W[ch][(k-1)%W[ch].length];return [ch.toUpperCase(),w]})}
+  function hash(t){var h=2166136261;for(var k=0;k<t.length;k++){h^=t.charCodeAt(k);h=Math.imul(h,16777619)}return h>>>0}
   function store(v){try{if(v)localStorage.setItem(KEY,v);return localStorage.getItem(KEY)}catch(e){return null}}
   function post(b){try{return fetch('api/launch.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b),keepalive:true}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}catch(e){return Promise.resolve(null)}}
   var d=document.getElementById('lc-day'),m=document.getElementById('lc-month'),i;
@@ -443,52 +469,57 @@
   if(!store()&&!/[?&]nocard/.test(location.search))open();
 
   function untilBday(day,mon){var n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate()),b=new Date(n.getFullYear(),mon-1,day);if(b<t)b=new Date(n.getFullYear()+1,mon-1,day);return Math.round((b-t)/864e5)}
-  function lakh(l){if(l>=1e7)return (l/1e7).toFixed(1).replace(/\.0$/,'')+' crore';if(l>=1e5)return (l/1e5).toFixed(1).replace(/\.0$/,'')+' lakh';return l.toLocaleString('en-IN')}
-  function first(s){return s.trim().split(/\s+/)[0]}
+  function first(s){var f=s.trim().split(/\s+/)[0];return f.charAt(0).toUpperCase()+f.slice(1)}
+  function el(id){return document.getElementById(id)}
 
   var made=null;
-  document.getElementById('lc-form').addEventListener('submit',function(e){
+  el('lc-form').addEventListener('submit',function(e){
     e.preventDefault();
-    var name=document.getElementById('lc-name').value.trim().replace(/[<>]/g,''),day=+d.value,mon=+m.value,err=document.getElementById('lc-err');
+    var name=el('lc-name').value.trim().replace(/[<>]/g,''),day=+d.value,mon=+m.value,err=el('lc-err');
     if(!name){err.textContent='Add your name first.';return}
     if(!day||!mon||new Date(2024,mon-1,day).getMonth()!==mon-1){err.textContent='Pick a real birthday.';return}
     err.textContent='';
-    var days=untilBday(day,mon),span=days||365,litres=span*45600,fn=first(name);
-    var hi=days===0?'Happy birthday, '+fn+'!':fn+', thank you for coming.';
-    var b1=days===0?'Over the next year, one 1 MW data hall that cools with towers will evaporate about '+lakh(litres)+' litres of water.':'Your birthday is '+days+' day'+(days===1?'':'s')+' away. By then, one 1 MW data hall that cools with towers will evaporate about '+lakh(litres)+' litres of water.';
-    var msg=LINES[mon-1]+' '+b1+' We want that heat to make drinking water instead.';
-    document.getElementById('lc-hi').textContent=hi;
-    document.getElementById('lc-msg').textContent=msg;
+    var fn=first(name),days=untilBday(day,mon),q=Q[hash(fn.toLowerCase()+'|'+day+'|'+mon)%Q.length],bn=BORN[mon-1],ac=acro(fn);
+    var born='Born in '+M[mon-1]+'. Your flower is the '+bn[0]+' and your stone is '+bn[1]+'. '+bn[2];
+    var when=days===0?'Today is your day. We hope someone tells you how much you matter.':(days===1?'Your birthday is tomorrow. Have a lovely one.':'Your birthday is '+days+' days away. We hope it is a lovely one.');
+    el('lc-hi').textContent=days===0?'Happy birthday, '+fn+'!':fn+', this one is for you.';
+    var box=el('lc-msg');box.textContent='';
+    if(ac){var ul=document.createElement('ul');ul.className='lc-acro';ac.forEach(function(r){var li=document.createElement('li');var b=document.createElement('b');b.textContent=r[0];li.appendChild(b);li.appendChild(document.createTextNode(r[1].slice(1)));ul.appendChild(li)});box.appendChild(ul)}
+    var bq=document.createElement('blockquote');bq.className='lc-q';var qp=document.createElement('p');qp.textContent=q[0];var qc=document.createElement('cite');qc.textContent=q[1];bq.appendChild(qp);bq.appendChild(qc);box.appendChild(bq);
+    var p1=document.createElement('p');p1.className='lc-born';p1.textContent=born;box.appendChild(p1);
+    var p2=document.createElement('p');p2.className='lc-when';p2.textContent=when;box.appendChild(p2);
     store('card');
-    made={name:name,fn:fn,day:day,mon:mon,line:LINES[mon-1],b1:b1,n:0};
-    document.getElementById('lc-form').hidden=true;document.getElementById('lc-out').hidden=false;
+    made={fn:fn,day:day,mon:mon,q:q,bn:bn,ac:ac,n:0};
+    el('lc-form').hidden=true;el('lc-out').hidden=false;el('lc-out').scrollTop=0;lc.querySelector('.lc-box').scrollTop=0;
     draw();
-    post({event:'card',name:name,day:day,month:mon,save:document.getElementById('lc-save').checked,website:lc.querySelector('.lc-hp').value,ref:document.referrer}).then(function(r){if(r&&r.cards){made.n=r.cards;document.getElementById('lc-guest').textContent='[ Launch no. 17 · guest #'+r.cards+' ]';draw()}});
+    post({event:'card',name:name,day:day,month:mon,save:el('lc-save').checked,website:lc.querySelector('.lc-hp').value,ref:document.referrer}).then(function(r){if(r&&r.cards){made.n=r.cards;el('lc-guest').textContent='[ Launch no. 17 · guest #'+r.cards+' ]';draw()}});
   });
 
   function wrap(c,t,x,y,w,lh){var ws=t.split(' '),l='',n=0;for(var k=0;k<ws.length;k++){var tt=l?l+' '+ws[k]:ws[k];if(c.measureText(tt).width>w&&l){c.fillText(l,x,y+n*lh);n++;l=ws[k]}else l=tt}c.fillText(l,x,y+n*lh);return y+(n+1)*lh}
-  var img=new Image();img.src='media/renders/hero-34.webp';
+  function lines(c,t,w){var ws=t.split(' '),l='',n=1;for(var k=0;k<ws.length;k++){var tt=l?l+' '+ws[k]:ws[k];if(c.measureText(tt).width>w&&l){n++;l=ws[k]}else l=tt}return n}
   function draw(){
-    if(!made)return;var cv=document.getElementById('lc-card'),c=cv.getContext('2d'),W=1080,H=1350;
-    var g=c.createRadialGradient(200,1400,50,200,1400,900);g.addColorStop(0,'#123a7a');g.addColorStop(1,'#0b0d10');c.fillStyle=g;c.fillRect(0,0,W,H);
-    var g2=c.createRadialGradient(1050,1380,20,1050,1380,600);g2.addColorStop(0,'rgba(232,145,42,.45)');g2.addColorStop(1,'rgba(232,145,42,0)');c.fillStyle=g2;c.fillRect(0,0,W,H);
-    c.fillStyle='#eef0f3';c.font='700 26px "JetBrains Mono",monospace';c.fillText('[ LAUNCH NO. 17'+(made.n?' · GUEST #'+made.n:'')+' ]',80,110);
-    c.font='650 104px Inter,sans-serif';var y=wrap(c,made.fn,80,250,920,108);
-    c.fillStyle='#9aa1ab';c.font='500 30px "JetBrains Mono",monospace';c.fillText('BIRTHDAY · '+made.day+' '+M[made.mon-1].toUpperCase(),80,y+6);
-    if(img.complete&&img.naturalWidth){var iw=1000,ih=iw*img.naturalHeight/img.naturalWidth;c.save();c.beginPath();c.roundRect?c.roundRect(40,y+50,iw,ih,22):c.rect(40,y+50,iw,ih);c.clip();c.drawImage(img,40,y+50,iw,ih);c.restore();y+=50+ih}
-    c.fillStyle='#ffffff';c.font='500 38px Inter,sans-serif';y=wrap(c,made.line,80,y+80,920,52);
-    c.fillStyle='#9aa1ab';c.font='400 30px Inter,sans-serif';wrap(c,made.b1.replace('We want',''),80,y+20,920,42);
-    c.fillStyle='#e8912a';c.fillRect(80,H-150,60,6);
-    c.fillStyle='#ffffff';c.font='700 34px Inter,sans-serif';c.fillText('AcquaHT Labs',80,H-90);
-    c.fillStyle='#9aa1ab';c.font='500 26px "JetBrains Mono",monospace';c.fillText('Water from the heat AI throws away · acquahtlabs.in',80,H-48);
+    if(!made)return;var cv=el('lc-card'),c=cv.getContext('2d'),W=1080,H=1350,X=90,TW=900;
+    var g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0b0d10');g.addColorStop(1,'#101a2e');c.fillStyle=g;c.fillRect(0,0,W,H);
+    var g2=c.createRadialGradient(980,1350,10,980,1350,620);g2.addColorStop(0,'rgba(232,145,42,.38)');g2.addColorStop(1,'rgba(232,145,42,0)');c.fillStyle=g2;c.fillRect(0,0,W,H);
+    var g3=c.createRadialGradient(80,0,10,80,0,640);g3.addColorStop(0,'rgba(31,99,224,.35)');g3.addColorStop(1,'rgba(31,99,224,0)');c.fillStyle=g3;c.fillRect(0,0,W,H);
+    c.fillStyle='#7fb0ff';c.font='700 24px "JetBrains Mono",monospace';c.fillText('[ LAUNCH NO. 17'+(made.n?' · GUEST #'+made.n:'')+' ]',X,104);
+    c.fillStyle='#ffffff';c.font='650 96px Inter,sans-serif';var y=wrap(c,made.fn,X,214,TW,100);
+    c.fillStyle='#9aa1ab';c.font='500 26px "JetBrains Mono",monospace';c.fillText(made.day+' '+M[made.mon-1].toUpperCase()+' · '+made.bn[0].toUpperCase()+' · '+made.bn[1].toUpperCase(),X,y+4);y+=54;
+    if(made.ac){var n=made.ac.length,lh=n>7?40:46,fs=n>7?30:34;made.ac.forEach(function(r,k){var yy=y+k*lh+lh;c.fillStyle='#e8912a';c.font='800 '+fs+'px Inter,sans-serif';c.fillText(r[0],X,yy);var lw=c.measureText(r[0]).width;c.fillStyle='#eef0f3';c.font='500 '+fs+'px Inter,sans-serif';c.fillText(r[1].slice(1),X+lw+1,yy)});y+=n*lh+44}
+    var room=H-300-y,fq=56;c.font='italic 500 '+fq+'px Georgia,serif';while(fq>34&&lines(c,'“'+made.q[0]+'”',TW)*fq*1.25>room-70){fq-=2;c.font='italic 500 '+fq+'px Georgia,serif'}
+    c.fillStyle='#ffffff';y=wrap(c,'“'+made.q[0]+'”',X,y+fq,TW,Math.round(fq*1.25));
+    c.fillStyle='#9aa1ab';c.font='500 26px Inter,sans-serif';y=wrap(c,'— '+made.q[1],X,y+12,TW,34);
+    c.font='400 28px Inter,sans-serif';if(y+40+lines(c,made.bn[2],TW)*38<H-190){c.fillStyle='#c9ced6';wrap(c,made.bn[2],X,y+52,TW,38)}
+    c.fillStyle='#e8912a';c.fillRect(X,H-150,60,6);
+    c.fillStyle='#ffffff';c.font='700 32px Inter,sans-serif';c.fillText('With love, AcquaHT Labs',X,H-92);
+    c.fillStyle='#9aa1ab';c.font='500 24px "JetBrains Mono",monospace';c.fillText('acquahtlabs.in',X,H-52);
   }
-  img.onload=draw;
-  if(document.fonts&&document.fonts.load){document.fonts.load('650 40px Inter');document.fonts.load('700 20px "JetBrains Mono"')}
-  function blob(cb){document.getElementById('lc-card').toBlob(cb,'image/png')}
-  document.getElementById('lc-dl').addEventListener('click',function(){blob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='AcquaHT-launch-17-'+(made?made.fn:'card')+'.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)})});
-  var sh=document.getElementById('lc-share');
+  if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('650 40px Inter'),document.fonts.load('700 20px "JetBrains Mono"')]).then(draw).catch(function(){})}
+  function blob(cb){el('lc-card').toBlob(cb,'image/png')}
+  el('lc-dl').addEventListener('click',function(){blob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='AcquaHT-launch-17-'+(made?made.fn:'card')+'.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)})});
+  var sh=el('lc-share');
   if(navigator.canShare&&window.File){try{if(navigator.canShare({files:[new File([''],'x.png',{type:'image/png'})]}))sh.hidden=false}catch(e){}}
-  sh.addEventListener('click',function(){blob(function(b){var f=new File([b],'AcquaHT-launch-17.png',{type:'image/png'});navigator.share({files:[f],title:'AcquaHT launch no. 17',text:'My card from AcquaHT Labs: water from the heat AI throws away. acquahtlabs.in'}).catch(function(){})})});
+  sh.addEventListener('click',function(){blob(function(b){var f=new File([b],'AcquaHT-launch-17.png',{type:'image/png'});navigator.share({files:[f],title:'My launch card',text:'A little note AcquaHT Labs made for me. acquahtlabs.in'}).catch(function(){})})});
 })();
 </script>
 <script>
@@ -501,6 +532,6 @@
   document.querySelectorAll('.sec .stat .num:not(.num-sm)').forEach(function(el){io.observe(el)});
 })();
 </script>
-<script type="module" src="assets/site.js?v=mwmwl77x"></script>
+<script type="module" src="assets/site.js?v=mwmwv5pt"></script>
 </body>
 </html>
