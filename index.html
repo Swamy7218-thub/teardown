@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#0b0d10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=mwmvo1hh">
+<link rel="stylesheet" href="assets/site.css?v=mwmwl77x">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"AcquaHT Labs","url":"https://acquahtlabs.in","email":"swamynathan.jerra@acquahtlabs.in","telephone":"+91 93907 56095","address":{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},"description":"Turning data-centre waste heat into drinking water."}</script>
 </head>
 <body>
@@ -373,7 +373,7 @@
     </div>
     <nav aria-label="Footer">
       <p class="foot-h">Explore</p>
-      <a href="#how">How it works</a><a href="#proof">Our story</a><a href="#economics">Economics</a><a href="#roadmap">The plan</a><a href="simulator/">Simulator</a>
+      <a href="#how">How it works</a><a href="#proof">Our story</a><a href="#economics">Economics</a><a href="#roadmap">The plan</a><a href="simulator/">Simulator</a><a href="#" data-launch-card>Get your launch card</a>
     </nav>
     <div>
       <p class="foot-h">Contact</p>
@@ -385,6 +385,112 @@
 <script>
 (function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var H=innerHeight,io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});document.querySelectorAll('.rv').forEach(function(el){if(el.getBoundingClientRect().top>H){el.classList.add('pre');io.observe(el)}});setTimeout(function(){document.querySelectorAll('.rv.pre:not(.in)').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in')})},2500)})();
 </script>
+<!-- launch no. 17: welcome card, skippable, opens first -->
+<div class="lc" id="lc" role="dialog" aria-modal="true" aria-labelledby="lc-h" hidden>
+  <div class="lc-box">
+    <button class="lc-x" type="button" data-skip aria-label="Skip">Skip</button>
+    <form class="lc-step" id="lc-form" novalidate>
+      <p class="lc-kick">[ Launch no. 17 ]</p>
+      <h2 id="lc-h">You came to our launch. We made you something.</h2>
+      <p class="lc-sub">Tell us your name and birthday. You get a short note written for you and a card to keep.</p>
+      <label class="lc-f"><span>Your name</span><input id="lc-name" name="name" autocomplete="given-name" maxlength="60" required placeholder="First name is fine"></label>
+      <div class="lc-f"><span>Your birthday</span>
+        <div class="lc-dob"><select id="lc-day" aria-label="Day" required><option value="">Day</option></select><select id="lc-month" aria-label="Month" required><option value="">Month</option></select></div>
+      </div>
+      <input class="lc-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="lc-ok"><input type="checkbox" id="lc-save"> <span>Add me to the launch no. 17 guest list. AcquaHT saves my name and birthday (day and month) with the time. Not sold or shared. Email swamynathan.jerra@acquahtlabs.in to delete it.</span></label>
+      <p class="lc-err" id="lc-err" role="alert"></p>
+      <div class="lc-row"><button class="btn lc-go" type="submit">Get my card</button><button class="btn lc-skip" type="button" data-skip>Skip to the site</button></div>
+    </form>
+    <div class="lc-step lc-out" id="lc-out" hidden>
+      <p class="lc-kick" id="lc-guest">[ Launch no. 17 ]</p>
+      <h2 id="lc-hi"></h2>
+      <p class="lc-msg" id="lc-msg"></p>
+      <p class="lc-num" id="lc-num"></p>
+      <canvas id="lc-card" width="1080" height="1350" aria-label="Your launch card"></canvas>
+      <div class="lc-row"><button class="btn lc-go" type="button" id="lc-dl">Download my card</button><button class="btn lc-skip" type="button" id="lc-share" hidden>Share</button><button class="btn lc-skip" type="button" data-skip>See the machine</button></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var lc=document.getElementById('lc'); if(!lc) return;
+  var KEY='aq-launch17', M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var LINES=[
+    'Born at the start of the year, like every good plan. Ours is to make water from heat nobody wants.',
+    'February is the shortest month and still gets everything done. We respect that kind of efficiency.',
+    'March holds World Water Day on the 22nd. You were born in water’s own month.',
+    'April is when Hyderabad starts to bake. You bring the cool. We will bring the water.',
+    'May is the hottest month here and the hardest month for our machine. May people handle pressure.',
+    'June brings World Environment Day on the 5th and the first rain. Good timing on your part.',
+    'July air is full of monsoon. Our gel would call that a very good day at work.',
+    'August is our machine’s best month: about 993 litres a day in our model. Clearly a lucky month.',
+    'September air is still heavy with rain. A good month to be born, and a good month to catch water.',
+    'October is when Hyderabad’s tanker calls start climbing again. We would like to end that story.',
+    'November is when AcquaHT started, in 2023. You share a birthday month with a water startup.',
+    'December closes the year. We want to close the gap between wasted heat and clean water.'
+  ];
+  function store(v){try{if(v)localStorage.setItem(KEY,v);return localStorage.getItem(KEY)}catch(e){return null}}
+  function post(b){try{return fetch('api/launch.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b),keepalive:true}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}catch(e){return Promise.resolve(null)}}
+  var d=document.getElementById('lc-day'),m=document.getElementById('lc-month'),i;
+  for(i=1;i<=31;i++)d.add(new Option(i,i)); M.forEach(function(n,k){m.add(new Option(n,k+1))});
+  var lastFocus=null;
+  function open(){lastFocus=document.activeElement;lc.hidden=false;document.documentElement.classList.add('lc-on');setTimeout(function(){document.getElementById('lc-name').focus({preventScroll:true})},60);post({event:'open'})}
+  function close(skip){lc.hidden=true;document.documentElement.classList.remove('lc-on');if(skip&&store()!=='card'){store('skip');post({event:'skip'})}if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true})}
+  lc.querySelectorAll('[data-skip]').forEach(function(b){b.addEventListener('click',function(){close(true)})});
+  lc.addEventListener('keydown',function(e){if(e.key==='Escape')close(true)});
+  document.querySelectorAll('[data-launch-card]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open()})});
+  if(!store()&&!/[?&]nocard/.test(location.search))open();
+
+  function untilBday(day,mon){var n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate()),b=new Date(n.getFullYear(),mon-1,day);if(b<t)b=new Date(n.getFullYear()+1,mon-1,day);return Math.round((b-t)/864e5)}
+  function lakh(l){if(l>=1e7)return (l/1e7).toFixed(1).replace(/\.0$/,'')+' crore';if(l>=1e5)return (l/1e5).toFixed(1).replace(/\.0$/,'')+' lakh';return l.toLocaleString('en-IN')}
+  function first(s){return s.trim().split(/\s+/)[0]}
+
+  var made=null;
+  document.getElementById('lc-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('lc-name').value.trim().replace(/[<>]/g,''),day=+d.value,mon=+m.value,err=document.getElementById('lc-err');
+    if(!name){err.textContent='Add your name first.';return}
+    if(!day||!mon||new Date(2024,mon-1,day).getMonth()!==mon-1){err.textContent='Pick a real birthday.';return}
+    err.textContent='';
+    var days=untilBday(day,mon),span=days||365,litres=span*45600,fn=first(name);
+    var hi=days===0?'Happy birthday, '+fn+'!':fn+', thank you for coming.';
+    var b1=days===0?'Over the next year, one 1 MW data hall that cools with towers will evaporate about '+lakh(litres)+' litres of water.':'Your birthday is '+days+' day'+(days===1?'':'s')+' away. By then, one 1 MW data hall that cools with towers will evaporate about '+lakh(litres)+' litres of water.';
+    var msg=LINES[mon-1]+' '+b1+' We want that heat to make drinking water instead.';
+    document.getElementById('lc-hi').textContent=hi;
+    document.getElementById('lc-msg').textContent=msg;
+    store('card');
+    made={name:name,fn:fn,day:day,mon:mon,line:LINES[mon-1],b1:b1,n:0};
+    document.getElementById('lc-form').hidden=true;document.getElementById('lc-out').hidden=false;
+    draw();
+    post({event:'card',name:name,day:day,month:mon,save:document.getElementById('lc-save').checked,website:lc.querySelector('.lc-hp').value,ref:document.referrer}).then(function(r){if(r&&r.cards){made.n=r.cards;document.getElementById('lc-guest').textContent='[ Launch no. 17 · guest #'+r.cards+' ]';draw()}});
+  });
+
+  function wrap(c,t,x,y,w,lh){var ws=t.split(' '),l='',n=0;for(var k=0;k<ws.length;k++){var tt=l?l+' '+ws[k]:ws[k];if(c.measureText(tt).width>w&&l){c.fillText(l,x,y+n*lh);n++;l=ws[k]}else l=tt}c.fillText(l,x,y+n*lh);return y+(n+1)*lh}
+  var img=new Image();img.src='media/renders/hero-34.webp';
+  function draw(){
+    if(!made)return;var cv=document.getElementById('lc-card'),c=cv.getContext('2d'),W=1080,H=1350;
+    var g=c.createRadialGradient(200,1400,50,200,1400,900);g.addColorStop(0,'#123a7a');g.addColorStop(1,'#0b0d10');c.fillStyle=g;c.fillRect(0,0,W,H);
+    var g2=c.createRadialGradient(1050,1380,20,1050,1380,600);g2.addColorStop(0,'rgba(232,145,42,.45)');g2.addColorStop(1,'rgba(232,145,42,0)');c.fillStyle=g2;c.fillRect(0,0,W,H);
+    c.fillStyle='#eef0f3';c.font='700 26px "JetBrains Mono",monospace';c.fillText('[ LAUNCH NO. 17'+(made.n?' · GUEST #'+made.n:'')+' ]',80,110);
+    c.font='650 104px Inter,sans-serif';var y=wrap(c,made.fn,80,250,920,108);
+    c.fillStyle='#9aa1ab';c.font='500 30px "JetBrains Mono",monospace';c.fillText('BIRTHDAY · '+made.day+' '+M[made.mon-1].toUpperCase(),80,y+6);
+    if(img.complete&&img.naturalWidth){var iw=1000,ih=iw*img.naturalHeight/img.naturalWidth;c.save();c.beginPath();c.roundRect?c.roundRect(40,y+50,iw,ih,22):c.rect(40,y+50,iw,ih);c.clip();c.drawImage(img,40,y+50,iw,ih);c.restore();y+=50+ih}
+    c.fillStyle='#ffffff';c.font='500 38px Inter,sans-serif';y=wrap(c,made.line,80,y+80,920,52);
+    c.fillStyle='#9aa1ab';c.font='400 30px Inter,sans-serif';wrap(c,made.b1.replace('We want',''),80,y+20,920,42);
+    c.fillStyle='#e8912a';c.fillRect(80,H-150,60,6);
+    c.fillStyle='#ffffff';c.font='700 34px Inter,sans-serif';c.fillText('AcquaHT Labs',80,H-90);
+    c.fillStyle='#9aa1ab';c.font='500 26px "JetBrains Mono",monospace';c.fillText('Water from the heat AI throws away · acquahtlabs.in',80,H-48);
+  }
+  img.onload=draw;
+  if(document.fonts&&document.fonts.load){document.fonts.load('650 40px Inter');document.fonts.load('700 20px "JetBrains Mono"')}
+  function blob(cb){document.getElementById('lc-card').toBlob(cb,'image/png')}
+  document.getElementById('lc-dl').addEventListener('click',function(){blob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='AcquaHT-launch-17-'+(made?made.fn:'card')+'.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)})});
+  var sh=document.getElementById('lc-share');
+  if(navigator.canShare&&window.File){try{if(navigator.canShare({files:[new File([''],'x.png',{type:'image/png'})]}))sh.hidden=false}catch(e){}}
+  sh.addEventListener('click',function(){blob(function(b){var f=new File([b],'AcquaHT-launch-17.png',{type:'image/png'});navigator.share({files:[f],title:'AcquaHT launch no. 17',text:'My card from AcquaHT Labs: water from the heat AI throws away. acquahtlabs.in'}).catch(function(){})})});
+})();
+</script>
 <script>
 (function(){
   var nav=document.getElementById('nav'),dark=[].slice.call(document.querySelectorAll('.ink,.bp,.foot'));
@@ -395,6 +501,6 @@
   document.querySelectorAll('.sec .stat .num:not(.num-sm)').forEach(function(el){io.observe(el)});
 })();
 </script>
-<script type="module" src="assets/site.js?v=mwmvo1hh"></script>
+<script type="module" src="assets/site.js?v=mwmwl77x"></script>
 </body>
 </html>

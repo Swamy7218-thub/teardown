@@ -1,0 +1,7 @@
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-store"
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+<FilesMatch "^store\.php$">
+  Require all denied
+</FilesMatch>
