@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#0b0d10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=mwmwxvhf">
+<link rel="stylesheet" href="assets/site.css?v=mwmwz4q9">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"AcquaHT Labs","url":"https://acquahtlabs.in","email":"swamynathan.jerra@acquahtlabs.in","telephone":"+91 93907 56095","address":{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},"description":"Turning data-centre waste heat into drinking water."}</script>
 </head>
 <body>
@@ -385,25 +385,25 @@
 <script>
 (function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var H=innerHeight,io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});document.querySelectorAll('.rv').forEach(function(el){if(el.getBoundingClientRect().top>H){el.classList.add('pre');io.observe(el)}});setTimeout(function(){document.querySelectorAll('.rv.pre:not(.in)').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in')})},2500)})();
 </script>
-<!-- launch no. 17: welcome card, skippable, opens first -->
+<!-- first website launch: welcome card, skippable, opens first -->
 <div class="lc" id="lc" role="dialog" aria-modal="true" aria-labelledby="lc-h" hidden>
   <div class="lc-box">
     <button class="lc-x" type="button" data-skip aria-label="Skip">Skip</button>
     <form class="lc-step" id="lc-form" novalidate>
-      <p class="lc-kick">[ Launch no. 17 ]</p>
-      <h2 id="lc-h">You came to our launch. We made you something.</h2>
+      <p class="lc-kick">[ Our first website launch ]</p>
+      <h2 id="lc-h">Welcome to our first launch. We made you something.</h2>
       <p class="lc-sub">Tell us your name and birthday. You get a note written just for you, and a card to keep.</p>
       <label class="lc-f"><span>Your name</span><input id="lc-name" name="name" autocomplete="given-name" maxlength="60" required placeholder="First name is fine"></label>
       <div class="lc-f"><span>Your birthday</span>
         <div class="lc-dob"><select id="lc-day" aria-label="Day" required><option value="">Day</option></select><select id="lc-month" aria-label="Month" required><option value="">Month</option></select></div>
       </div>
       <input class="lc-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="lc-ok"><input type="checkbox" id="lc-save"> <span>Add me to the launch no. 17 guest list. AcquaHT saves my name and birthday (day and month) with the time. Not sold or shared. Email swamynathan.jerra@acquahtlabs.in to delete it.</span></label>
+      <label class="lc-ok"><input type="checkbox" id="lc-save"> <span>Add me to our launch-day guest list. AcquaHT saves my name and birthday (day and month) with the time. Not sold or shared. Email swamynathan.jerra@acquahtlabs.in to delete it.</span></label>
       <p class="lc-err" id="lc-err" role="alert"></p>
       <div class="lc-row"><button class="btn lc-go" type="submit">Get my card</button><button class="btn lc-skip" type="button" data-skip>Skip to the site</button></div>
     </form>
     <div class="lc-step lc-out" id="lc-out" hidden>
-      <p class="lc-kick" id="lc-guest">[ Launch no. 17 ]</p>
+      <p class="lc-kick" id="lc-guest">[ Our first website launch ]</p>
       <h2 id="lc-hi"></h2>
       <div class="lc-msg" id="lc-msg"></div>
       <p class="lc-num" id="lc-num"></p>
@@ -492,7 +492,7 @@
     made={fn:fn,day:day,mon:mon,q:q,bn:bn,ac:ac,n:0};
     el('lc-form').hidden=true;el('lc-out').hidden=false;el('lc-out').scrollTop=0;lc.querySelector('.lc-box').scrollTop=0;
     draw();
-    post({event:'card',name:name,day:day,month:mon,save:el('lc-save').checked,website:lc.querySelector('.lc-hp').value,ref:document.referrer}).then(function(r){if(r&&r.cards){made.n=r.cards;el('lc-guest').textContent='[ Launch no. 17 · guest #'+r.cards+' ]';draw()}});
+    post({event:'card',name:name,day:day,month:mon,save:el('lc-save').checked,website:lc.querySelector('.lc-hp').value,ref:document.referrer}).then(function(r){if(r&&r.cards){made.n=r.cards;el('lc-guest').textContent='[ Our first launch · guest #'+r.cards+' ]';draw()}});
   });
 
   function wrap(c,t,x,y,w,lh){var ws=t.split(' '),l='',n=0;for(var k=0;k<ws.length;k++){var tt=l?l+' '+ws[k]:ws[k];if(c.measureText(tt).width>w&&l){c.fillText(l,x,y+n*lh);n++;l=ws[k]}else l=tt}c.fillText(l,x,y+n*lh);return y+(n+1)*lh}
@@ -502,7 +502,7 @@
     var g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0b0d10');g.addColorStop(1,'#101a2e');c.fillStyle=g;c.fillRect(0,0,W,H);
     var g2=c.createRadialGradient(980,1350,10,980,1350,620);g2.addColorStop(0,'rgba(232,145,42,.38)');g2.addColorStop(1,'rgba(232,145,42,0)');c.fillStyle=g2;c.fillRect(0,0,W,H);
     var g3=c.createRadialGradient(80,0,10,80,0,640);g3.addColorStop(0,'rgba(31,99,224,.35)');g3.addColorStop(1,'rgba(31,99,224,0)');c.fillStyle=g3;c.fillRect(0,0,W,H);
-    c.fillStyle='#7fb0ff';c.font='700 24px "JetBrains Mono",monospace';c.fillText('[ LAUNCH NO. 17'+(made.n?' · GUEST #'+made.n:'')+' ]',X,104);
+    c.fillStyle='#7fb0ff';c.font='700 24px "JetBrains Mono",monospace';c.fillText('[ OUR FIRST LAUNCH'+(made.n?' · GUEST #'+made.n:'')+' ]',X,104);
     c.fillStyle='#ffffff';c.font='650 96px Inter,sans-serif';var y=wrap(c,made.fn,X,214,TW,100);
     c.fillStyle='#9aa1ab';c.font='500 26px "JetBrains Mono",monospace';c.fillText(made.day+' '+M[made.mon-1].toUpperCase()+' · '+made.bn[0].toUpperCase()+' · '+made.bn[1].toUpperCase(),X,y+4);y+=54;
     if(made.ac){var n=made.ac.length,lh=n>7?40:46,fs=n>7?30:34;made.ac.forEach(function(r,k){var yy=y+k*lh+lh;c.fillStyle='#e8912a';c.font='800 '+fs+'px Inter,sans-serif';c.fillText(r[0],X,yy);var lw=c.measureText(r[0]).width;c.fillStyle='#eef0f3';c.font='500 '+fs+'px Inter,sans-serif';c.fillText(r[1].slice(1),X+lw+1,yy)});y+=n*lh+44}
@@ -516,10 +516,10 @@
   }
   if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('650 40px Inter'),document.fonts.load('700 20px "JetBrains Mono"')]).then(draw).catch(function(){})}
   function blob(cb){el('lc-card').toBlob(cb,'image/png')}
-  el('lc-dl').addEventListener('click',function(){blob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='AcquaHT-launch-17-'+(made?made.fn:'card')+'.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)})});
+  el('lc-dl').addEventListener('click',function(){blob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='AcquaHT-launch-card-'+(made?made.fn:'card')+'.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)})});
   var sh=el('lc-share');
   if(navigator.canShare&&window.File){try{if(navigator.canShare({files:[new File([''],'x.png',{type:'image/png'})]}))sh.hidden=false}catch(e){}}
-  sh.addEventListener('click',function(){blob(function(b){var f=new File([b],'AcquaHT-launch-17.png',{type:'image/png'});navigator.share({files:[f],title:'My launch card',text:'A little note AcquaHT Labs made for me. acquahtlabs.in'}).catch(function(){})})});
+  sh.addEventListener('click',function(){blob(function(b){var f=new File([b],'AcquaHT-launch-card.png',{type:'image/png'});navigator.share({files:[f],title:'My launch card',text:'A little note AcquaHT Labs made for me. acquahtlabs.in'}).catch(function(){})})});
 })();
 </script>
 <script>
@@ -532,6 +532,6 @@
   document.querySelectorAll('.sec .stat .num:not(.num-sm)').forEach(function(el){io.observe(el)});
 })();
 </script>
-<script type="module" src="assets/site.js?v=mwmwxvhf"></script>
+<script type="module" src="assets/site.js?v=mwmwz4q9"></script>
 </body>
 </html>
