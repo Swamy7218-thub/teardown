@@ -9,6 +9,12 @@ $key = (string)($_GET['key'] ?? '');
 if (!hash_equals(KEY_SHA256, hash('sha256', $key))) { http_response_code(404); exit('Not found'); }
 
 $csv = acq_csv_path();
+// reset (POST only, so a link preview can never trigger it): keeps a dated backup of what was there
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['reset'] ?? '') === 'yes') {
+    $stamp = (new DateTime('now', new DateTimeZone('Asia/Kolkata')))->format('Ymd-His');
+    foreach ([$csv, acq_count_path()] as $f) if (is_file($f)) rename($f, $f . '.before-reset-' . $stamp);
+    header('Content-Type: application/json'); echo '{"ok":true,"reset":"' . $stamp . '"}'; exit;
+}
 $rows = [];
 if (is_file($csv) && ($f = fopen($csv, 'r'))) { fgetcsv($f); while ($r = fgetcsv($f)) $rows[] = $r; fclose($f); }
 
