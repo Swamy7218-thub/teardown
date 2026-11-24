@@ -64,3 +64,33 @@
 }
 .mo-rise.mo-shown.mo-tilt{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease,opacity .8s ease;transition-delay:0s}
 .mo-rise.mo-shown.mo-tilt.mo-active{transition:transform .08s linear,box-shadow .3s ease}
+
+/* v7.1: supporters, team, nav, footer */
+.logo-wall li{position:relative;transition:background .4s ease}
+.logo-wall li::before{content:"";position:absolute;inset:0;background:radial-gradient(120px circle at 50% 50%,rgba(19,158,155,.10),transparent 70%);opacity:0;transition:opacity .4s ease;pointer-events:none}
+.logo-wall li:hover::before,.logo-wall li.mo-flash::before{opacity:1}
+.logo-wall li img{transition:filter .5s ease,opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
+.logo-wall li:hover img{transform:scale(1.06)}
+.logo-wall li.mo-flash img{filter:none;opacity:1}
+.recog li{position:relative}
+.recog li::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:linear-gradient(90deg,var(--blue),var(--teal));transition:width 1.1s cubic-bezier(.16,.84,.22,1);transition-delay:calc(var(--i,0)*90ms + .2s)}
+.recog li.mo-shown::before{width:100%}
+.team article{transition:border-color .4s ease}
+.team article:hover{border-color:rgba(19,158,155,.45)}
+.team article.mo-shown{transition:border-color .4s ease,transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease,opacity .8s ease;transition-delay:0s}
+.team article.mo-shown:hover{transform:translateY(-4px);box-shadow:0 22px 50px -24px rgba(20,30,60,.35)}
+.team .av{outline:2px solid transparent;outline-offset:3px;transition:outline-color .4s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.team article:hover .av{outline-color:var(--teal);transform:scale(1.04)}
+.links a{position:relative;transition:color .25s ease}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:0 50%;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.links a:hover::after,.links a.mo-cur::after{transform:scaleX(1)}
+.links a.mo-cur{color:var(--ink)}
+.nav-ink .links a.mo-cur{color:#fff}
+.foot{position:relative;overflow:hidden}
+.foot .mo-wave .w1{stroke:rgba(31,99,224,.35)}
+.foot .mo-wave .w2{stroke:rgba(19,158,155,.35)}
+.brand .drop{animation:mo-drip 4.5s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes mo-drip{0%,82%,100%{transform:none}88%{transform:scaleY(1.12) scaleX(.92)}94%{transform:scaleY(.94) scaleX(1.05)}}
+@media (prefers-reduced-motion:reduce){.brand .drop{animation:none}.recog li::before{width:100%;transition:none}}
+.foot>.wrap{position:relative;z-index:2}
+.mo-img.mo-done{clip-path:none}

@@ -76,12 +76,12 @@
     /* the clip hides the image from IntersectionObserver and lazy loading, so watch its frame */
     pre.observe(box); box._imgs = (box._imgs || []).concat(img);
     var prev = box._mo;
-    box._mo = function () { if (prev) prev(); img.classList.add("mo-shown"); };
+    box._mo = function () { if (prev) prev(); img.classList.add("mo-shown"); setTimeout(function () { img.classList.add("mo-done"); }, 1500); };
     io.observe(box);
   });
 
   /* 5. stats, cards, steps rise in sequence */
-  if (!reduce) [".stat", ".card", ".step", ".lv", ".gate"].forEach(function (sel) {
+  if (!reduce) [".stat", ".card", ".step", ".lv", ".gate", ".recog li", ".team article", ".logo-wall li", ".levers article", ".specs > div"].forEach(function (sel) {
     var groups = new Map();
     $$(sel).forEach(function (el) {
       if (!below(el)) return;
@@ -239,6 +239,41 @@
       setTimeout(r.remove.bind(r), 1200);
     }
   }, { passive: true });
+
+
+  /* 11. logo walls: a colour sweep runs through them once */
+  if (!reduce) $$(".logo-wall").forEach(function (w) {
+    w._mo = function () {
+      $$("li", w).forEach(function (li, i) {
+        setTimeout(function () { li.classList.add("mo-flash"); }, 300 + i * 140);
+        setTimeout(function () { li.classList.remove("mo-flash"); }, 1300 + i * 140);
+      });
+    };
+    io.observe(w);
+  });
+
+  /* 12. nav marks the section you are reading */
+  var navLinks = $$('.links a[href^="#"]');
+  if (navLinks.length) {
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (a) { a.classList.toggle("mo-cur", a.getAttribute("href") === "#" + e.target.id); });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    $$("main > section[id]").forEach(function (t) { spy.observe(t); });
+  }
+
+  /* 13. footer gets the same thin wave */
+  var foot = document.querySelector(".foot");
+  if (foot && !reduce) {
+    var fs = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    fs.setAttribute("class", "mo-layer mo-wave"); fs.setAttribute("viewBox", "0 0 2400 56");
+    fs.setAttribute("preserveAspectRatio", "none"); fs.setAttribute("aria-hidden", "true");
+    var fd = "M0 28"; for (var fx = 0; fx <= 2400; fx += 150) fd += " Q" + (fx + 75) + " " + (28 + (((fx / 150) % 2) ? 12 : -12)) + " " + (fx + 150) + " 28";
+    fs.innerHTML = '<path class="w1" d="' + fd + '"/>';
+    foot.insertBefore(fs, foot.firstChild);
+  }
 
   /* scroll loop: progress bar and drifting numerals */
   var ticking = false;
