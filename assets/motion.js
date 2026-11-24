@@ -49,8 +49,14 @@
     })();
   }
   if (!reduce) $$(".eyebrow, .kick").forEach(function (el) {
-    if (el.children.length || !below(el)) return;
-    el._mo = function () { decode(el); };
+    if (!below(el)) return;
+    var tn = null;
+    el.childNodes.forEach(function (n) { if (n.nodeType === 3 && n.nodeValue.trim()) tn = n; });
+    if (!tn) return;
+    var wrap = document.createElement("span");
+    wrap.textContent = tn.nodeValue;
+    el.replaceChild(wrap, tn);
+    el._mo = function () { decode(wrap); };
     io.observe(el);
   });
 
